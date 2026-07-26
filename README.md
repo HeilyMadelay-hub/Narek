@@ -2,7 +2,7 @@
 
 > **Enterprise AI Agent Platform**
 
-Build, orchestrate, govern and monitor enterprise AI agents.
+A local-first platform to build, orchestrate, govern and monitor enterprise AI agents.
 
 ![Java](https://img.shields.io/badge/Java-21-ED8B00?logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-6DB33F?logo=springboot&logoColor=white)
