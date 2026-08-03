@@ -1,0 +1,46 @@
+<svg viewBox="0 0 480 620" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6e7781"/>
+    </marker>
+  </defs>
+
+  <!-- boxes -->
+  <g font-size="15" font-weight="600" text-anchor="middle">
+    <rect x="140" y="10" width="200" height="50" rx="8" fill="#eef1f5" stroke="#57606a" stroke-width="1.2"/>
+    <text x="240" y="40" fill="#24292f">Angular Dashboard</text>
+
+    <rect x="140" y="110" width="200" height="50" rx="8" fill="#eef1f5" stroke="#57606a" stroke-width="1.2"/>
+    <text x="240" y="140" fill="#24292f">Spring Boot API</text>
+
+    <rect x="140" y="210" width="200" height="50" rx="8" fill="#e3edff" stroke="#4c6ef5" stroke-width="1.2"/>
+    <text x="240" y="240" fill="#24292f">Agent Runtime</text>
+
+    <rect x="140" y="310" width="200" height="50" rx="8" fill="#eef1f5" stroke="#57606a" stroke-width="1.2"/>
+    <text x="240" y="340" fill="#24292f">Knowledge Service</text>
+
+    <rect x="140" y="410" width="200" height="50" rx="8" fill="#eef1f5" stroke="#57606a" stroke-width="1.2"/>
+    <text x="240" y="440" fill="#24292f">Vector Store (pgvector)</text>
+
+    <rect x="140" y="510" width="200" height="50" rx="8" fill="#e6f4ea" stroke="#2f9e44" stroke-width="1.2"/>
+    <text x="240" y="540" fill="#24292f">Ollama (local LLM)</text>
+  </g>
+
+  <!-- side notes -->
+  <g font-size="12" text-anchor="middle" fill="#57606a">
+    <rect x="360" y="118" width="100" height="34" rx="6" fill="#fff8e1" stroke="#d4a72c" stroke-width="1"/>
+    <text x="410" y="139">Redis / RabbitMQ</text>
+  </g>
+
+  <!-- arrows -->
+  <g stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="240" y1="60" x2="240" y2="106" />
+    <line x1="240" y1="160" x2="240" y2="206" />
+    <line x1="240" y1="260" x2="240" y2="306" />
+    <line x1="240" y1="360" x2="240" y2="406" />
+    <line x1="240" y1="460" x2="240" y2="506" />
+    <line x1="340" y1="135" x2="358" y2="135" />
+  </g>
+
+  <text x="240" y="600" text-anchor="middle" font-size="12" fill="#8b949e">MVP architecture — see README for future architecture</text>
+</svg>
