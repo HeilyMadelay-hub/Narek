@@ -307,6 +307,17 @@ Reference target for the optional AWS deployment described in the [roadmap](#roa
 | Secrets Manager | API keys and credentials |
 | IAM | Access control and service roles |
 
+<details>
+<summary>Why these services</summary>
+
+- **ECS Fargate over EKS** — no cluster to manage, in line with the local-first / low-operational-overhead design principle.
+- **RDS for PostgreSQL over Aurora** — direct match for the existing PostgreSQL + pgvector setup, lower cost at this stage.
+- **Amazon MQ for RabbitMQ over SQS/SNS** — keeps the existing RabbitMQ setup instead of re-architecting messaging.
+- **S3** — maps directly to the Knowledge Base's document ingestion feature.
+- **ALB, CloudFront, Route 53, Secrets Manager, IAM** — standard building blocks for any AWS deployment, not specific to Narek.
+
+</details>
+
 ---
 
 ## Quick Start
