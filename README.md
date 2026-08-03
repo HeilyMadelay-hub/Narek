@@ -145,7 +145,7 @@ This flow is still being built — see [Project Status](#project-status).
 - Policy engine
 - Multi-agent workflows
 - Plugin SDK
-- Azure AI Foundry integration
+- OpenRouter integration (multi-provider AI access)
 - Cost analytics
 - Enterprise RBAC
 
@@ -226,8 +226,8 @@ AI Provider
  ┌───┴────────────┐
  │                │
  ▼                ▼
-Ollama      Azure AI Foundry
-(Local)       (Future)
+Ollama         OpenRouter
+(Local)         (Future)
 ```
 
 </details>
@@ -277,7 +277,8 @@ Multi-provider AI
 | Technology | Purpose |
 |---|---|
 | Spring AI | LLM orchestration and provider abstraction |
-| Ollama | Local LLM execution |
+| Ollama | Local LLM execution (MVP) |
+| OpenRouter | Multi-provider AI access for cloud deployments (Future) |
 
 ### Infrastructure
 
@@ -287,6 +288,24 @@ Multi-provider AI
 | PostgreSQL + pgvector | Relational + vector storage |
 | Redis | Caching |
 | RabbitMQ | Messaging |
+
+### Cloud Deployment (Future)
+
+Reference target for the optional AWS deployment described in the [roadmap](#roadmap). The platform stays provider-agnostic by design — this is one deployment option, not a hard dependency.
+
+| AWS Service | Purpose |
+|---|---|
+| ECS (Fargate) | Container hosting for backend and frontend, no cluster to manage |
+| ECR | Container image registry |
+| RDS for PostgreSQL (pgvector) | Relational + vector storage |
+| ElastiCache for Redis | Caching |
+| Amazon MQ for RabbitMQ | Messaging, compatible with the existing RabbitMQ setup |
+| S3 | Document storage for knowledge base ingestion |
+| Application Load Balancer | Traffic routing across services |
+| CloudFront | CDN for the Angular dashboard |
+| Route 53 | DNS |
+| Secrets Manager | API keys and credentials |
+| IAM | Access control and service roles |
 
 ---
 
@@ -404,9 +423,8 @@ narek/
 
 ### v2
 
-- [ ] Optional cloud deployment
-- [ ] Azure AI Foundry integration
-- [ ] Multi-provider AI support
+- [ ] AWS deployment (ECS, RDS, ElastiCache, Amazon MQ)
+- [ ] OpenRouter integration (multi-provider AI access)
 - [ ] Enterprise RBAC
 
 See the [Development Roadmap](./docs/development-roadmap.md) for implementation-level detail.
