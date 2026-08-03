@@ -2,7 +2,7 @@
 
 > Open-source platform for building, orchestrating and governing enterprise AI agents.
 
-Local-first architecture built with Spring AI and Angular.
+Local-first architecture built with Spring Boot, Spring AI and Angular.
 
 ![Status](https://img.shields.io/badge/Status-Early%20Development-yellow)
 ![Java](https://img.shields.io/badge/Java-21-ED8B00?logo=openjdk&logoColor=white)
@@ -52,7 +52,7 @@ Narek is currently in **early development**. There is no released version yet.
 
 The current milestone focuses on building the core runtime, orchestration layer and dashboard required to execute AI agents locally — see the [Development Roadmap](./doc/development-roadmap.md) for the full implementation plan.
 
-Everything described below as "Planned" is design intent, not shipped functionality.
+Everything described below as "Planned" or "Future" is design intent, not shipped functionality.
 
 ---
 
@@ -60,7 +60,7 @@ Everything described below as "Planned" is design intent, not shipped functional
 
 Narek provides the infrastructure required to run AI agents beyond simple chat interfaces.
 
-The platform combines:
+Core capabilities include:
 
 - AI agent runtime
 - Retrieval-Augmented Generation (RAG)
@@ -70,15 +70,13 @@ The platform combines:
 - Knowledge management
 - Observability
 
-All components are designed around a modular architecture built with Spring Boot and Angular.
-
 ---
 
 ## Why Narek?
 
-Most AI projects eventually implement the same infrastructure: runtime, memory, retrieval, tool execution, governance and observability.
+Most AI projects eventually implement the same infrastructure: runtime, memory, retrieval, prompt management, tool execution, governance and observability.
 
-Narek aims to provide those capabilities as a reusable platform instead of rebuilding them for every application.
+Instead of rebuilding these capabilities for every AI application, Narek provides them as a reusable platform.
 
 ---
 
@@ -94,31 +92,29 @@ The project follows a local-first approach during development while remaining cl
 
 ## Current Milestone
 
-The first public milestone focuses on validating the complete execution flow, end to end:
+The first public milestone targets the complete execution flow, end to end:
 
 ```text
 User
   │
 Dashboard
   │
-Create Agent
+Agent Runtime
   │
-Execute Prompt
+Knowledge Retrieval
   │
-Retrieve Knowledge
+Prompt Builder
   │
-Generate Response
+AI Provider
   │
-Store Execution
+Execution History
 ```
 
-Everything in this flow is still being built — see [Project Status](#project-status).
+This flow is still being built — see [Project Status](#project-status).
 
 ---
 
 ## MVP Scope
-
-The initial milestone focuses on validating the core platform end-to-end.
 
 ### Target for MVP
 
@@ -149,8 +145,8 @@ Narek is not intended to:
 
 - Replace LLM providers
 - Train foundation models
-- Compete with general-purpose workflow automation platforms
 - Serve as a standalone chatbot application
+- Compete with general-purpose BPM / workflow automation platforms
 
 Instead, it provides the infrastructure required to build and operate AI agents.
 
@@ -158,31 +154,29 @@ Instead, it provides the infrastructure required to build and operate AI agents.
 
 ## Core Features
 
-The following modules represent the planned platform architecture. Their implementation status is reflected in the [roadmap](#roadmap) below.
+The following modules represent the planned platform architecture. Status reflects where each module sits on the [roadmap](#roadmap), not current functionality.
 
 | Module | Status | Description |
 |---|---|---|
-| Agent Runtime | Planned (MVP) | Executes AI agents and coordinates workflows |
-| Dashboard | Planned (MVP) | Angular management UI |
-| Prompt Manager | Planned (MVP) | Stores and versions prompts |
-| Knowledge Base | Planned (MVP) | Document ingestion and retrieval |
-| Memory | Planned (MVP) | Conversation and execution memory |
-| Tool Registry | Future (v0.5) | External tool and API integrations |
-| Policy Engine | Future (v0.5) | Governance and access control |
-| Observability | Future (v0.5) | Traces, logs, metrics, cost estimation |
+| Agent Runtime | Planned | Executes AI agents and coordinates workflows |
+| Dashboard | Planned | Angular management UI |
+| Prompt Manager | Planned | Stores and versions prompts |
+| Knowledge Base | Planned | Document ingestion and retrieval |
+| Memory | Planned | Conversation and execution memory |
+| Tool Registry | Future | External tool and API integrations |
+| Policy Engine | Future | Governance and access control |
+| Observability | Future | Traces, logs, metrics, cost estimation |
 
 ---
 
 ## Design Principles
 
-Narek follows a small set of architectural principles:
-
-- Local-first development
-- Modular architecture
-- Provider abstraction
-- Cloud agnostic
-- Secure by default
-- Observable by default
+- Local-first
+- Modular Architecture
+- Provider Abstraction
+- Cloud Agnostic
+- Secure by Default
+- Observable by Default
 
 ---
 
@@ -192,41 +186,8 @@ Narek follows a small set of architectural principles:
   <img src="./img/architecture.svg" alt="Narek MVP architecture diagram" width="480">
 </p>
 
-### Current Target Architecture
-
-```text
-Agent Runtime
-  │
-Policy Engine
-  │
-Workflow Engine
-  │
-Plugin SDK
-  │
-Multi-provider AI
-```
-
 <details>
-<summary>MVP architecture (text version)</summary>
-
-```text
-Angular
-  │
-Spring Boot API
-  │
-Agent Runtime
-  │
-Knowledge Service
-  │
-Vector Store (pgvector)
-  │
-Ollama
-```
-
-</details>
-
-<details>
-<summary>Long-term architecture</summary>
+<summary>Detailed architecture</summary>
 
 ```text
                   Angular Dashboard
@@ -259,6 +220,23 @@ Ollama      Azure AI Foundry
 
 </details>
 
+<details>
+<summary>Future architecture</summary>
+
+```text
+Agent Runtime
+  │
+Policy Engine
+  │
+Workflow Engine
+  │
+Plugin SDK
+  │
+Multi-provider AI
+```
+
+</details>
+
 ---
 
 ## Technology Stack
@@ -269,7 +247,6 @@ Ollama      Azure AI Foundry
 |---|---|
 | Java 21 | Runtime |
 | Spring Boot 3 | API |
-| Spring AI | AI integration |
 | Spring Security | Authentication |
 | Spring Data JPA / Hibernate | Persistence |
 
@@ -283,6 +260,13 @@ Ollama      Azure AI Foundry
 | Angular Signals | State management |
 | RxJS | Reactive streams |
 
+### AI
+
+| Technology | Purpose |
+|---|---|
+| Spring AI | LLM orchestration and provider abstraction |
+| Ollama | Local LLM execution |
+
 ### Infrastructure
 
 | Technology | Purpose |
@@ -291,19 +275,25 @@ Ollama      Azure AI Foundry
 | PostgreSQL + pgvector | Relational + vector storage |
 | Redis | Caching |
 | RabbitMQ | Messaging |
-| Ollama | Local LLM execution |
 
 ---
 
 ## Getting Started
 
-Clone the repository:
+### Requirements
+
+- Java 21+
+- Node.js 20+
+- Docker and Docker Compose
+- Git
+
+### Clone the repository
 
 ```bash
 git clone https://github.com/yourusername/narek.git
 ```
 
-Start infrastructure:
+### Start infrastructure
 
 ```bash
 docker compose up -d
@@ -317,13 +307,13 @@ docker exec -it ollama ollama pull llama3.2
 
 > Swap `llama3.2` for any model supported by Ollama.
 
-Run the backend:
+### Run the backend
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-Run the frontend:
+### Run the frontend
 
 ```bash
 cd frontend
@@ -331,7 +321,7 @@ npm install
 ng serve
 ```
 
-Verify installation:
+### Verify installation
 
 ```bash
 curl http://localhost:8080/actuator/health
@@ -349,24 +339,7 @@ curl http://localhost:8080/actuator/health
 ```text
 narek/
 ├── backend/
-│   ├── api/
-│   ├── application/
-│   ├── domain/
-│   ├── infrastructure/
-│   ├── runtime/
-│   ├── memory/
-│   ├── knowledge/
-│   ├── prompts/
-│   ├── tools/
-│   ├── policies/
-│   └── monitoring/
 ├── frontend/
-│   └── src/
-│       └── app/
-│           ├── core/
-│           ├── shared/
-│           ├── features/
-│           └── layouts/
 ├── docker/
 ├── doc/
 └── img/
@@ -416,13 +389,13 @@ See the [Development Roadmap](./doc/development-roadmap.md) for implementation-l
 |---|---|
 | [Development Roadmap](./doc/development-roadmap.md) | Implementation milestones for contributors and maintainers |
 
-More documents (architecture, API reference, RAG pipeline, local development) will be added as those parts of the platform are built.
+More documents (architecture, API reference, RAG pipeline, local development) will be added under [`doc/`](./doc) as those parts of the platform are built.
 
 ---
 
 ## Contributing
 
-Narek is pre-release and evolving quickly. Issues and pull requests are welcome — check the [Development Roadmap](./doc/development-roadmap.md) for the current focus before starting on something large, and open an issue first to discuss scope.
+Narek is pre-release and evolving quickly. Open an issue before starting on a large pull request so scope can be agreed on first.
 
 ---
 
