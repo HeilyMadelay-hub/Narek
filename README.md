@@ -2,7 +2,7 @@
 
 > Open-source platform for building, orchestrating and governing enterprise AI agents.
 
-Local-first architecture built with Spring Boot, Spring AI and Angular.
+Built with Spring Boot, Spring AI and Angular. Designed for local-first development and enterprise deployment.
 
 ![Status](https://img.shields.io/badge/Status-Early%20Development-yellow)
 ![Java](https://img.shields.io/badge/Java-21-ED8B00?logo=openjdk&logoColor=white)
@@ -30,6 +30,7 @@ Local-first architecture built with Spring Boot, Spring AI and Angular.
 - [Overview](#overview)
 - [Why Narek?](#why-narek)
 - [Vision](#vision)
+- [Project Goals](#project-goals)
 - [Current Milestone](#current-milestone)
 - [MVP Scope](#mvp-scope)
 - [Non-Goals](#non-goals)
@@ -37,10 +38,12 @@ Local-first architecture built with Spring Boot, Spring AI and Angular.
 - [Design Principles](#design-principles)
 - [Architecture](#architecture)
 - [Technology Stack](#technology-stack)
+- [Quick Start](#quick-start)
 - [Getting Started](#getting-started)
 - [Repository Structure](#repository-structure)
 - [Roadmap](#roadmap)
 - [Documentation](#documentation)
+- [FAQ](#faq)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -50,7 +53,7 @@ Local-first architecture built with Spring Boot, Spring AI and Angular.
 
 Narek is currently in **early development**. There is no released version yet.
 
-The current milestone focuses on building the core runtime, orchestration layer and dashboard required to execute AI agents locally — see the [Development Roadmap](./doc/development-roadmap.md) for the full implementation plan.
+The current milestone focuses on building the core runtime, orchestration layer and dashboard required to execute AI agents locally — see the [Development Roadmap](./docs/development-roadmap.md) for the full implementation plan.
 
 Everything described below as "Planned" or "Future" is design intent, not shipped functionality.
 
@@ -90,9 +93,18 @@ The project follows a local-first approach during development while remaining cl
 
 ---
 
+## Project Goals
+
+- Build AI agents, not chatbots.
+- Stay provider agnostic.
+- Run locally without cloud dependencies.
+- Scale towards enterprise environments.
+
+---
+
 ## Current Milestone
 
-The first public milestone targets the complete execution flow, end to end:
+The current development milestone validates the complete end-to-end execution flow:
 
 ```text
 User
@@ -278,6 +290,24 @@ Multi-provider AI
 
 ---
 
+## Quick Start
+
+```bash
+git clone https://github.com/yourusername/narek.git
+docker compose up -d
+./mvnw spring-boot:run
+```
+
+```bash
+cd frontend
+npm install
+ng serve
+```
+
+Open `http://localhost:4200`.
+
+---
+
 ## Getting Started
 
 ### Requirements
@@ -334,14 +364,14 @@ curl http://localhost:8080/actuator/health
 
 ## Repository Structure
 
-`backend/` and `frontend/` don't exist in this repository yet — this is the target layout as the codebase is built out:
+Target repository layout:
 
 ```text
 narek/
 ├── backend/
 ├── frontend/
 ├── docker/
-├── doc/
+├── docs/
 └── img/
 ```
 
@@ -379,7 +409,7 @@ narek/
 - [ ] Multi-provider AI support
 - [ ] Enterprise RBAC
 
-See the [Development Roadmap](./doc/development-roadmap.md) for implementation-level detail.
+See the [Development Roadmap](./docs/development-roadmap.md) for implementation-level detail.
 
 ---
 
@@ -387,9 +417,21 @@ See the [Development Roadmap](./doc/development-roadmap.md) for implementation-l
 
 | Document | Description |
 |---|---|
-| [Development Roadmap](./doc/development-roadmap.md) | Implementation milestones for contributors and maintainers |
+| [Development Roadmap](./docs/development-roadmap.md) | Implementation milestones for contributors and maintainers |
 
-More documents (architecture, API reference, RAG pipeline, local development) will be added under [`doc/`](./doc) as those parts of the platform are built.
+More documents (architecture, API reference, RAG pipeline, local development) will be added under [`docs/`](./docs) as those parts of the platform are built.
+
+---
+
+## FAQ
+
+### Is Narek production ready?
+
+No. The project is currently under active development and does not yet have a stable release.
+
+### Which AI providers are supported?
+
+The MVP targets Ollama for local development. Additional providers are planned after the initial release.
 
 ---
 
