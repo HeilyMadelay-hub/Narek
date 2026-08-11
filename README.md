@@ -18,7 +18,9 @@ Narek is a platform for running, orchestrating, and governing AI agents — buil
 
 ## Overview
 
-The platform controls how agents execute, what knowledge they draw on, what they're permitted to do, and how every execution is traced and audited. It runs locally today on Docker and Ollama; its architecture is designed to scale toward enterprise deployments without changing that core model.
+Narek provides the infrastructure layer required to build and operate AI agents beyond a simple chat interface. It manages agent execution, knowledge retrieval, memory, tool access, and policy enforcement, while keeping each execution traceable and auditable.
+
+The platform is designed around a provider-agnostic architecture: agents can run locally with Docker and Ollama today, while the same core components can be extended to managed infrastructure and additional AI providers as the platform evolves.
 
 ---
 
@@ -32,9 +34,9 @@ Runtime orchestration, retrieval, prompt versioning, tool execution, conversatio
 
 ## Why Narek?
 
-Narek is not a chatbot and not an LLM provider. It doesn't train models, and it isn't a general-purpose workflow automation platform.
+Narek is not a chatbot or an LLM provider. It doesn't train models, and it isn't a general-purpose workflow automation platform.
 
-It is the orchestration layer underneath AI agents: the place where agent execution, knowledge retrieval, prompt management, and governance live, so applications built on top of it don't have to reimplement them.
+It provides the infrastructure layer underneath AI applications: agent execution, knowledge retrieval, prompt management, memory, tool access, and governance — so teams can build applications on top of these capabilities without reimplementing them for every project.
 
 ---
 
@@ -79,15 +81,22 @@ User
   │
 Dashboard
   │
+Spring Boot API
+  │
 Agent Runtime
-  │
-Knowledge Retrieval
-  │
-Prompt Builder
-  │
-AI Provider
-  │
-Execution History
+  ├── Policy Engine
+  ├── Memory
+  ├── Knowledge Retrieval
+  └── Tool Registry
+          │
+          ▼
+     Model Router
+          │
+          ▼
+     AI Provider
+          │
+          ▼
+   Execution Trace
 ```
 
 A user configures and triggers an agent from the dashboard. The runtime retrieves relevant knowledge from the vector store, builds the prompt, sends it to the configured AI provider — Ollama for local execution — and records the full execution for later inspection.
