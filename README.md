@@ -4,7 +4,7 @@
 
 Built with Spring Boot, Spring AI and Angular. Designed for local-first development and enterprise deployment.
 
-`Status: Early Development` `Java 21` `Spring Boot 3` `Angular 20` `Spring AI 1.0` `Docker Compose` `RabbitMQ` `PostgreSQL pgvector` `MIT License`
+`Java 21` `Spring Boot 3` `Angular 20` `Spring AI 1.0` `Docker Compose` `RabbitMQ` `PostgreSQL pgvector` `MIT License`
 
 <p align="center">
   <img src="./img/interfaz de narek.png" alt="Narek Dashboard">
