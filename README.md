@@ -2,7 +2,7 @@
 
 > Open-source platform for building, orchestrating and governing enterprise AI agents.
 
-Built with Spring Boot, Spring AI and Angular. Designed for local-first development and enterprise deployment.
+Built with `Java 21`, `Spring Boot 3`, `Spring AI 1.0`, and `Angular 20`. Designed for scalable development and enterprise deployment.
 
 <p align="center">
   <img src="docs/screenshots/Dashboard.png" alt="Dashboard" width="800"><br>
@@ -379,18 +379,6 @@ narek/
 ├── docs/
 └── img/
 ```
-
----
-
-## Screenshots
-
-| View | Screenshot |
-|---|---|
-| Dashboard | |
-| Agent Playground |  |
-| Agent Configuration | |
-| Knowledge Base | |
-| Execution & Observability |  |
 
 ---
 
