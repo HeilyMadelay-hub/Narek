@@ -5,9 +5,9 @@
 Built with Spring Boot, Spring AI and Angular. Designed for local-first development and enterprise deployment.
 
 <p align="center">
-  <img src="docs/screenshots/AgentDetail_Configuration.png" alt="Agent Configuration" height="200">
-  <img src="docs/screenshots/Dashboard.png" alt="Dashboard" height="200">
-  <img src="docs/screenshots/RunDetails_ExecutionTrace.png" alt="Execution Trace" height="200">
+  <img src="docs/screenshots/Dashboard.png" alt="Dashboard" width="800"><br>
+  <img src="docs/screenshots/AgentDetail_Configuration.png" alt="Agent Configuration" width="800"><br>
+  <img src="docs/screenshots/RunDetails_ExecutionTrace.png" alt="Execution Trace" width="800">
 </p>
 
 <p align="center">
@@ -188,7 +188,7 @@ The following modules represent the planned platform architecture. Status reflec
 ## Architecture
 
 <p align="center">
-  <img src="./img/architecture.svg" alt="Narek MVP architecture diagram" width="480">
+  <img src="docs/screenshots/architecture.svg" alt="Narek architecture diagram" width="480">
 </p>
 
 <details>
@@ -270,46 +270,28 @@ Multi-provider AI
 | Technology | Purpose |
 |---|---|
 | Spring AI | LLM orchestration and provider abstraction |
-| Ollama | Local LLM execution (MVP) |
-| OpenRouter | Multi-provider AI access for cloud deployments (Future) |
+| Ollama | LLM execution |
+| OpenRouter | Multi-provider AI access |
 
 ### Infrastructure
 
 | Technology | Purpose |
 |---|---|
-| Docker / Docker Compose | Local environment |
+| Docker / Docker Compose | Environment orchestration |
 | PostgreSQL + pgvector | Relational + vector storage |
 | Redis | Caching |
 | RabbitMQ | Messaging |
-
-### Cloud Deployment (Future)
-
-Reference target for the optional AWS deployment described in the [roadmap](#roadmap). The platform stays provider-agnostic by design — this is one deployment option, not a hard dependency.
-
-| AWS Service | Purpose |
-|---|---|
-| ECS (Fargate) | Container hosting for backend and frontend, no cluster to manage |
+| ECS (Fargate) | Container hosting for backend and frontend |
 | ECR | Container image registry |
-| RDS for PostgreSQL (pgvector) | Relational + vector storage |
-| ElastiCache for Redis | Caching |
-| Amazon MQ for RabbitMQ | Messaging, compatible with the existing RabbitMQ setup |
+| RDS for PostgreSQL (pgvector) | Managed relational + vector storage |
+| ElastiCache for Redis | Managed caching |
+| Amazon MQ for RabbitMQ | Managed messaging |
 | S3 | Document storage for knowledge base ingestion |
 | Application Load Balancer | Traffic routing across services |
 | CloudFront | CDN for the Angular dashboard |
 | Route 53 | DNS |
 | Secrets Manager | API keys and credentials |
 | IAM | Access control and service roles |
-
-<details>
-<summary>Why these services</summary>
-
-- **ECS Fargate over EKS** — no cluster to manage, in line with the local-first / low-operational-overhead design principle.
-- **RDS for PostgreSQL over Aurora** — direct match for the existing PostgreSQL + pgvector setup, lower cost at this stage.
-- **Amazon MQ for RabbitMQ over SQS/SNS** — keeps the existing RabbitMQ setup instead of re-architecting messaging.
-- **S3** — maps directly to the Knowledge Base's document ingestion feature.
-- **ALB, CloudFront, Route 53, Secrets Manager, IAM** — standard building blocks for any AWS deployment, not specific to Narek.
-
-</details>
 
 ---
 
