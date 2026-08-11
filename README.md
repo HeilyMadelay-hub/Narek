@@ -4,15 +4,7 @@
 
 Built with Spring Boot, Spring AI and Angular. Designed for local-first development and enterprise deployment.
 
-![Status](https://img.shields.io/badge/Status-Early%20Development-yellow)
-![Java](https://img.shields.io/badge/Java-21-ED8B00?logo=openjdk&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-6DB33F?logo=springboot&logoColor=white)
-![Angular](https://img.shields.io/badge/Angular-20-DD0031?logo=angular&logoColor=white)
-![Spring AI](https://img.shields.io/badge/Spring%20AI-1.0-6DB33F?logo=spring&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
-![RabbitMQ](https://img.shields.io/badge/RabbitMQ-FF6600?logo=rabbitmq&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-pgvector-4169E1?logo=postgresql&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-blue)
+`Status: Early Development` `Java 21` `Spring Boot 3` `Angular 20` `Spring AI 1.0` `Docker Compose` `RabbitMQ` `PostgreSQL pgvector` `MIT License`
 
 <p align="center">
   <img src="./img/interfaz de narek.png" alt="Narek Dashboard">
@@ -41,6 +33,7 @@ Built with Spring Boot, Spring AI and Angular. Designed for local-first developm
 - [Quick Start](#quick-start)
 - [Getting Started](#getting-started)
 - [Repository Structure](#repository-structure)
+- [Screenshots](#screenshots)
 - [Roadmap](#roadmap)
 - [Documentation](#documentation)
 - [FAQ](#faq)
@@ -404,6 +397,18 @@ narek/
 ├── docs/
 └── img/
 ```
+
+---
+
+## Screenshots
+
+| View | Screenshot |
+|---|---|
+| Dashboard | ![Narek Dashboard](docs/screenshots/dashboard.png) |
+| Agent Playground | ![Narek Agent Playground](docs/screenshots/agent-playground.png) |
+| Agent Configuration | ![Narek Agent Configuration](docs/screenshots/agent-configuration.png) |
+| Knowledge Base | ![Narek Knowledge Base](docs/screenshots/knowledge-base.png) |
+| Execution & Observability | ![Narek Execution](docs/screenshots/execution-detail.png) |
 
 ---
 
