@@ -7,7 +7,7 @@ Built with Spring Boot, Spring AI and Angular. Designed for local-first developm
 <p align="center">
   <img src="docs/screenshots/Dashboard.png" alt="Dashboard" width="800"><br>
   <img src="docs/screenshots/AgentDetail_Configuration.png" alt="Agent Configuration" width="800"><br>
-  <img src="docs/screenshots/RunDetails_ExecutionTrace.png" alt="Execution Trace" width="800">
+  <img src="docs/screenshots/RunDetails_ExecutionTrace..png" alt="Execution Trace" width="800">
 </p>
 
 <p align="center">
@@ -386,11 +386,11 @@ narek/
 
 | View | Screenshot |
 |---|---|
-| Dashboard | ![Narek Dashboard](docs/screenshots/dashboard.png) |
-| Agent Playground | ![Narek Agent Playground](docs/screenshots/agent-playground.png) |
-| Agent Configuration | ![Narek Agent Configuration](docs/screenshots/agent-configuration.png) |
-| Knowledge Base | ![Narek Knowledge Base](docs/screenshots/knowledge-base.png) |
-| Execution & Observability | ![Narek Execution](docs/screenshots/execution-detail.png) |
+| Dashboard | |
+| Agent Playground |  |
+| Agent Configuration | |
+| Knowledge Base | |
+| Execution & Observability |  |
 
 ---
 
