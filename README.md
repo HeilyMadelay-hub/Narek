@@ -7,7 +7,7 @@ Built with Spring Boot, Spring AI and Angular. Designed for local-first developm
 <p align="center">
   <img src="docs/screenshots/Dashboard.png" alt="Dashboard" width="800"><br>
   <img src="docs/screenshots/AgentDetail_Configuration.png" alt="Agent Configuration" width="800"><br>
-  <img src="docs/screenshots/RunDetails_ExecutionTrace..png" alt="Execution Trace" width="800">
+  <img src="docs/screenshots/RunDetails_ExecutionTrace.png" alt="Execution Trace" width="800">
 </p>
 
 <p align="center">
