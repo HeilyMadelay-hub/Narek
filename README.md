@@ -2,7 +2,7 @@
 
 > Infrastructure for building, orchestrating, and governing enterprise AI agents.
 
-Narek is an open-source platform that provides the runtime, retrieval, memory, and governance layer AI applications need beyond a simple chat interface — so teams stop rebuilding the same infrastructure for every project.
+Narek is an open-source platform that provides the runtime, retrieval, memory, and governance layer AI applications need beyond a simple chat interface so teams stop rebuilding the same infrastructure for every project.
 
 `Java 21` · `Spring Boot 3` · `Spring AI 1.0` · `Angular 20` · `PostgreSQL + pgvector` · `Redis` · `RabbitMQ` · `Docker`
 
@@ -20,7 +20,7 @@ Narek is an open-source platform that provides the runtime, retrieval, memory, a
 
 Most AI projects end up rebuilding the same infrastructure: an agent runtime, retrieval, prompt management, tool execution, memory, governance, and observability. Narek provides these as a reusable platform instead of a bespoke stack per application.
 
-The platform is built around agents, not a single assistant: it manages how agents run, what they know, what they're allowed to do, and how every execution can be traced and audited. It targets provider-agnostic, cloud-agnostic deployment — it runs locally today via Docker and Ollama, and is designed to scale into enterprise environments without changing its core architecture.
+The platform is built around agents, not a single assistant: it manages how agents run, what they know, what they're allowed to do, and how every execution can be traced and audited. It targets provider-agnostic, cloud-agnostic deployment it runs locally today via Docker and Ollama, and is designed to scale into enterprise environments without changing its core architecture.
 
 ---
 
@@ -28,7 +28,7 @@ The platform is built around agents, not a single assistant: it manages how agen
 
 Building an AI agent is easy. Operating one in production is not.
 
-Runtime orchestration, retrieval, prompt versioning, tool execution, conversation memory, access control, and traceability are all required before an agent can be trusted with real workloads — and most teams end up building fragile, one-off versions of each. Narek exists so that infrastructure is solved once, as a platform, instead of once per project.
+Runtime orchestration, retrieval, prompt versioning, tool execution, conversation memory, access control, and traceability are all required before an agent can be trusted with real workloads and most teams end up building fragile, one-off versions of each. Narek exists so that infrastructure is solved once, as a platform, instead of once per project.
 
 ---
 
