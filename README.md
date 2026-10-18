@@ -171,8 +171,8 @@ Narek is cloud-agnostic by design, so moving from the local Docker Compose stack
 ## Quick Start
 
 ```bash
-git clone https://github.com/yourusername/narek.git
-cd narek
+git clone https://github.com/HeilyMadelay-hub/Narek.git
+cd Narek
 
 docker compose up -d
 ./mvnw spring-boot:run
