@@ -151,13 +151,13 @@ Narek's architecture is cloud-agnostic by design, so the local Docker Compose st
 | **Compute** | ECS (Fargate) for the Spring Boot backend; ECR for container images |
 | **Frontend hosting** | S3 (static Angular build) + CloudFront (CDN) |
 | **Relational DB / vector store** | RDS for PostgreSQL with the `pgvector` extension (Aurora PostgreSQL as a scale-up path) |
-| **Cache / memory layer** | ElastiCache for Redis |
-| **Messaging** | Amazon MQ (RabbitMQ engine) |
+| **Cache / memory layer** | ElastiCache for Redis with AOF persistence enabled, used strictly as a cache in front of Postgres; conversation/execution memory is never Redis-only |
+| **Messaging** | Amazon MQ (RabbitMQ engine), single active/standby broker; revisit for a clustered setup if agent fan-out starts saturating it |
 | **Object storage** | S3 (raw documents for the RAG ingestion pipeline) |
-| **Networking** | VPC with public/private subnets, NAT Gateway, Application Load Balancer, Route 53 |
+| **Networking** | VPC with public/private subnets, NAT Gateway, Application Load Balancer, Route 53, plus an S3 Gateway Endpoint so document traffic skips NAT processing charges |
 | **Edge security** | AWS WAF in front of CloudFront / ALB |
 | **Secrets & access** | Secrets Manager (DB credentials, OpenRouter API key), IAM (least-privilege ECS task roles) |
-| **Observability** | CloudWatch (logs, metrics, alarms), X-Ray (distributed tracing of agent executions) |
+| **Observability** | CloudWatch (logs, metrics, alarms) and X-Ray for infrastructure-level tracing (network/service latency), separate from Narek's own Execution Trace, which covers agent-level decisions and audit |
 | **AI provider (OpenRouter)** | No dedicated AWS service, just an outbound HTTPS call from the backend via NAT Gateway, authenticated with an API key stored in Secrets Manager |
 | **CI/CD** | GitHub Actions, building and pushing container images to ECR, then deploying to ECS Fargate |
 
