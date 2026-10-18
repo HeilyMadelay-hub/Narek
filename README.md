@@ -144,22 +144,27 @@ The Angular dashboard talks to a Spring Boot API, which fans out to three core s
 
 ## Deployment (AWS, planned)
 
-Narek's architecture is cloud-agnostic by design, so the local Docker Compose stack maps directly onto managed AWS services without changing the application layer.
+Narek is cloud-agnostic by design, so moving from the local Docker Compose stack to managed AWS services doesn't require rewriting the application.
 
 | Area | Service |
 |-|-|
-| **Compute** | ECS (Fargate) for the Spring Boot backend; ECR for container images |
-| **Frontend hosting** | S3 (static Angular build) + CloudFront (CDN) |
-| **Relational DB / vector store** | RDS for PostgreSQL with the `pgvector` extension (Aurora PostgreSQL as a scale-up path) |
-| **Cache / memory layer** | ElastiCache for Redis with AOF persistence enabled, used strictly as a cache in front of Postgres; conversation/execution memory is never Redis-only |
-| **Messaging** | Amazon MQ (RabbitMQ engine), single active/standby broker; revisit for a clustered setup if agent fan-out starts saturating it |
-| **Object storage** | S3 (raw documents for the RAG ingestion pipeline) |
-| **Networking** | VPC with public/private subnets, NAT Gateway, Application Load Balancer, Route 53, plus an S3 Gateway Endpoint so document traffic skips NAT processing charges |
-| **Edge security** | AWS WAF in front of CloudFront / ALB |
-| **Secrets & access** | Secrets Manager (DB credentials, OpenRouter API key), IAM (least-privilege ECS task roles) |
-| **Observability** | CloudWatch (logs, metrics, alarms) and X-Ray for infrastructure-level tracing (network/service latency), separate from Narek's own Execution Trace, which covers agent-level decisions and audit |
+| **Compute** | ECS on Fargate for the Spring Boot backend, with target-tracking auto scaling (CPU, memory, ALB request count) and ECS-native blue/green deployments; ECR for images, with scan on push |
+| **Frontend hosting** | Private S3 bucket for the Angular build, served through CloudFront with Origin Access Control |
+| **Relational DB / vector store** | RDS for PostgreSQL with `pgvector`, Multi-AZ in production, automated backups with point-in-time recovery (Aurora PostgreSQL as a scale-up path) |
+| **Database access** | RDS Proxy in front of Postgres, which keeps ECS scale-outs from exhausting the connection limit. The backend authenticates to the proxy with IAM instead of a password, so rotating the database credentials doesn't affect running tasks |
+| **Cache** | ElastiCache for Valkey (Redis-compatible, so the current client works unchanged), Multi-AZ with automatic failover. Used purely as a cache; conversation and execution memory live in Postgres |
+| **Messaging** | Amazon MQ for RabbitMQ 4.x, deployed as a three-node cluster across AZs with quorum queues; a single-instance broker is enough for dev |
+| **Object storage** | S3 for the raw documents in the RAG ingestion pipeline, with versioning enabled |
+| **Networking** | VPC with public and private subnets, a regional NAT Gateway (spans all AZs, so OpenRouter calls survive an AZ outage), Application Load Balancer, Route 53, and VPC endpoints for S3, ECR and Secrets Manager |
+| **TLS / certificates** | ACM certificates for the ALB and CloudFront. The CloudFront certificate must be issued in us-east-1, whatever region the rest of the stack runs in |
+| **Edge security** | AWS WAF on CloudFront and the ALB (CloudFront's web ACL also has to be created in us-east-1) |
+| **Encryption** | Customer-managed KMS keys for RDS, ElastiCache, Secrets Manager and the documents bucket. The frontend bucket keeps the default SSE-S3, since it only holds public assets |
+| **Secrets & access** | Secrets Manager for the OpenRouter API key and for the database credentials the proxy uses, which rotate automatically. Each ECS service gets two least-privilege IAM roles: an execution role (pulls the image, injects secrets at startup) and a task role (what the running app can call, such as `rds-db:connect` on the proxy) |
+| **Observability** | CloudWatch for logs (with a fixed retention period), metrics and alarms. Tracing through OpenTelemetry (ADOT Java agent) into X-Ray for latency across services; agent-level decisions stay in Narek's own Execution Trace |
+| **Account audit** | CloudTrail trail delivering management events to S3 (who changed a security group, who read a secret) |
+| **Cost control** | AWS Budgets alerts for AWS spend. OpenRouter bills outside AWS, so its spend is capped with a credit limit on the API key |
 | **AI provider (OpenRouter)** | No dedicated AWS service, just an outbound HTTPS call from the backend via NAT Gateway, authenticated with an API key stored in Secrets Manager |
-| **CI/CD** | GitHub Actions, building and pushing container images to ECR, then deploying to ECS Fargate |
+| **CI/CD** | GitHub Actions with OIDC federation (no long-lived AWS keys): build the image, push it to ECR, run Flyway as a one-off ECS task inside the VPC (hosted runners can't reach the private database), then deploy. Migrations stay backward compatible (expand/contract), since blue/green runs both versions at once and a rollback doesn't revert the schema |
 
 ---
 
