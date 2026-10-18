@@ -2,7 +2,7 @@
 
 > Infrastructure for building, orchestrating, and governing enterprise AI agents.
 
-Narek is a platform for running, orchestrating, and governing AI agents — built for engineering teams that need agent behavior backed by real infrastructure: a runtime, retrieval and memory layers, tool execution, and policy-based governance, rather than a single conversational assistant.
+Narek is a platform for running, orchestrating, and governing AI agents. It's built for engineering teams that need agent behavior backed by real infrastructure (a runtime, retrieval and memory layers, tool execution, and policy-based governance) rather than a single conversational assistant.
 
 `Java 21` · `Spring Boot 3` · `Spring AI 1.0` · `Angular 20` · `PostgreSQL + pgvector` · `Redis` · `RabbitMQ` · `Docker`
 
@@ -20,7 +20,7 @@ Narek is a platform for running, orchestrating, and governing AI agents — buil
 
 Narek provides the infrastructure layer required to build and operate AI agents beyond a simple chat interface. It manages agent execution, knowledge retrieval, memory, tool access, and policy enforcement, while keeping each execution traceable and auditable.
 
-The platform is designed around a provider-agnostic architecture: agents can run locally with Docker and Ollama today, while the same core components can be extended to managed infrastructure and additional AI providers as the platform evolves.
+The platform is designed around a provider-agnostic architecture. Agents can run locally with Docker and Ollama today, while the same core components can be extended to managed infrastructure and additional AI providers as the platform evolves.
 
 ---
 
@@ -36,41 +36,41 @@ Runtime orchestration, retrieval, prompt versioning, tool execution, conversatio
 
 Narek is not a chatbot or an LLM provider. It doesn't train models, and it isn't a general-purpose workflow automation platform.
 
-It provides the infrastructure layer underneath AI applications: agent execution, knowledge retrieval, prompt management, memory, tool access, and governance — so teams can build applications on top of these capabilities without reimplementing them for every project.
+It provides the infrastructure layer underneath AI applications: agent execution, knowledge retrieval, prompt management, memory, tool access, and governance, so teams can build applications on top of these capabilities instead of reimplementing them for every project.
 
 ---
 
 ## Philosophy
 
 - Build AI agents, not chatbots.
-- Stay provider agnostic — no hard dependency on a single model vendor.
-- Keep the architecture cloud-agnostic — a local Docker/Ollama setup and a future cloud deployment share the same design.
-- Govern by default — access control and observability are part of the platform, not an afterthought.
-- Modular over monolithic — runtime, memory, retrieval, and tools are separable services.
+- Stay provider agnostic: no hard dependency on a single model vendor.
+- Keep the architecture cloud-agnostic: a local Docker/Ollama setup and a future cloud deployment share the same design.
+- Govern by default: access control and observability are part of the platform, not an afterthought.
+- Modular over monolithic: runtime, memory, retrieval, and tools are separable services.
 
 ---
 
 ## Key Features
 
-**Agent Runtime** — Executes AI agents and coordinates their workflows end to end.
+**Agent Runtime.** Executes AI agents and coordinates their workflows end to end.
 
-**Retrieval-Augmented Generation (RAG)** — Document ingestion and vector search over PostgreSQL + pgvector to ground agent responses in retrieved knowledge.
+**Retrieval-Augmented Generation (RAG).** Document ingestion and vector search over PostgreSQL + pgvector to ground agent responses in retrieved knowledge.
 
-**Prompt Management** — Stores and versions prompts used across agents.
+**Prompt Management.** Stores and versions prompts used across agents.
 
-**Tool Registry** — Connects agents to external tools and APIs.
+**Tool Registry.** Connects agents to external tools and APIs.
 
-**Memory** — Persists conversation and execution context across agent runs.
+**Memory.** Persists conversation and execution context across agent runs.
 
-**Knowledge Management** — Ingests and organizes the documents agents retrieve from.
+**Knowledge Management.** Ingests and organizes the documents agents retrieve from.
 
-**Policy Engine** — Governs what agents are allowed to do and access.
+**Policy Engine.** Governs what agents are allowed to do and access.
 
-**Observability** — Traces, logs, and metrics for every agent execution.
+**Observability.** Traces, logs, and metrics for every agent execution.
 
-**Management Dashboard** — Angular UI for configuring agents, running them, and inspecting execution history.
+**Management Dashboard.** Angular UI for configuring agents, running them, and inspecting execution history.
 
-**Model Abstraction** — Spring AI decouples agent logic from the model layer; agents run locally via Ollama today, with OpenRouter integration planned for multi-provider access.
+**Model Abstraction.** Spring AI decouples agent logic from the model layer; agents run locally via Ollama today, with OpenRouter integration planned for multi-provider access.
 
 ---
 
@@ -99,7 +99,7 @@ Agent Runtime
    Execution Trace
 ```
 
-A user configures and triggers an agent from the dashboard. The runtime retrieves relevant knowledge from the vector store, builds the prompt, sends it to the configured AI provider — Ollama for local execution — and records the full execution for later inspection.
+A user configures and triggers an agent from the dashboard. The runtime pulls relevant knowledge from the vector store, builds the prompt, sends it to the configured AI provider (Ollama for local execution), and records the full execution for later inspection.
 
 ---
 
@@ -121,7 +121,7 @@ A user configures and triggers an agent from the dashboard. The runtime retrieve
   <img src="docs/screenshots/architecture.svg" alt="Narek Architecture" width="900">
 </p>
 
-The Angular dashboard talks to a Spring Boot API, which fans out to three core services: the **Agent Runtime**, the **Policy Engine**, and the **Model Router**. The Agent Runtime coordinates execution and delegates to the **Memory Service** and **Tool Registry**; the **Knowledge Service** handles retrieval against a **pgvector**-backed vector store. The Model Router dispatches requests to the configured **AI Provider** — **Ollama** for local execution today, with **OpenRouter** planned for multi-provider access.
+The Angular dashboard talks to a Spring Boot API, which fans out to three core services: the **Agent Runtime**, the **Policy Engine**, and the **Model Router**. The Agent Runtime coordinates execution and delegates to the **Memory Service** and **Tool Registry**; the **Knowledge Service** handles retrieval against a **pgvector**-backed vector store. The Model Router dispatches requests to the configured **AI Provider**, **Ollama** for local execution today, with **OpenRouter** planned for multi-provider access.
 
 > Full architecture documentation in [docs/architecture.md](./docs/architecture.md)
 
@@ -133,12 +133,33 @@ The Angular dashboard talks to a Spring Boot API, which fans out to three core s
 |-|-|
 | **Frontend** | Angular 20, TypeScript, Angular Material, Angular Signals, RxJS |
 | **Backend** | Java 21, Spring Boot 3, Spring Data JPA / Hibernate |
-| **AI** | Spring AI 1.0, Ollama (local execution) — OpenRouter *(planned)* |
+| **AI** | Spring AI 1.0, Ollama (local execution), OpenRouter *(planned)* |
 | **Data / RAG** | PostgreSQL + pgvector, document ingestion pipeline |
 | **Messaging** | RabbitMQ |
-| **Security** | Spring Security — Enterprise RBAC *(planned)* |
+| **Security** | Spring Security, Enterprise RBAC *(planned)* |
 | **Infrastructure** | Docker / Docker Compose |
-| **Deployment** *(planned)* | AWS (ECS, RDS, ElastiCache, Amazon MQ, S3, ALB, CloudFront, IAM, Secrets Manager) |
+| **Deployment** *(planned)* | AWS, see [Deployment](#deployment-aws-planned) below |
+
+---
+
+## Deployment (AWS, planned)
+
+Narek's architecture is cloud-agnostic by design, so the local Docker Compose stack maps directly onto managed AWS services without changing the application layer.
+
+| Area | Service |
+|-|-|
+| **Compute** | ECS (Fargate) for the Spring Boot backend; ECR for container images |
+| **Frontend hosting** | S3 (static Angular build) + CloudFront (CDN) |
+| **Relational DB / vector store** | RDS for PostgreSQL with the `pgvector` extension (Aurora PostgreSQL as a scale-up path) |
+| **Cache / memory layer** | ElastiCache for Redis |
+| **Messaging** | Amazon MQ (RabbitMQ engine) |
+| **Object storage** | S3 (raw documents for the RAG ingestion pipeline) |
+| **Networking** | VPC with public/private subnets, NAT Gateway, Application Load Balancer, Route 53 |
+| **Edge security** | AWS WAF in front of CloudFront / ALB |
+| **Secrets & access** | Secrets Manager (DB credentials, OpenRouter API key), IAM (least-privilege ECS task roles) |
+| **Observability** | CloudWatch (logs, metrics, alarms), X-Ray (distributed tracing of agent executions) |
+| **AI provider (OpenRouter)** | No dedicated AWS service, just an outbound HTTPS call from the backend via NAT Gateway, authenticated with an API key stored in Secrets Manager |
+| **CI/CD** | CodePipeline + CodeBuild, or GitHub Actions, deploying container images to ECR → ECS |
 
 ---
 
@@ -187,7 +208,7 @@ Additional documents (architecture, API reference, RAG pipeline) will be added u
 | **MVP** | Core stack (Spring Boot, Spring AI, Ollama, Angular), agent runtime, RAG with pgvector, memory, and observability basics |
 | **v0.5** | Policy engine, tool registry, workflow engine |
 | **v1.0** | Plugin SDK, multi-agent workflows, cost analytics |
-| **v2** | AWS deployment, OpenRouter integration, enterprise RBAC |
+| **v2** | AWS deployment (ECS, RDS, ElastiCache, Amazon MQ, S3, CloudFront, ALB, IAM, Secrets Manager), OpenRouter integration, enterprise RBAC |
 
 > Implementation-level detail in the [Development Roadmap](./docs/development-roadmap.md)
 
