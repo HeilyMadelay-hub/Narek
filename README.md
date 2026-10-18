@@ -9,9 +9,9 @@ Narek is a platform for running, orchestrating, and governing AI agents. It's bu
 ## Screenshots
 
 <p align="center">
-  <img src="docs/screenshots/Dashboard.png" alt="Dashboard" width="800"><br>
-  <img src="docs/screenshots/AgentDetail_Configuration.png" alt="Agent Configuration" width="800"><br>
-  <img src="docs/screenshots/RunDetails_ExecutionTrace.png" alt="Execution Trace" width="800">
+  <img src="screenshots/Dashboard.png" alt="Dashboard" width="800"><br>
+  <img src="screenshots/AgentDetail_Configuration.png" alt="Agent Configuration" width="800"><br>
+  <img src="screenshots/RunDetails_ExecutionTrace.png" alt="Execution Trace" width="800">
 </p>
 
 ---
@@ -118,7 +118,7 @@ A user configures and triggers an agent from the dashboard. The runtime pulls re
 ## Architecture
 
 <p align="center">
-  <img src="docs/screenshots/architecture.svg" alt="Narek Architecture" width="900">
+  <img src="screenshots/architecture.svg" alt="Narek Architecture" width="900">
 </p>
 
 The Angular dashboard talks to a Spring Boot API, which fans out to three core services: the **Agent Runtime**, the **Policy Engine**, and the **Model Router**. The Agent Runtime coordinates execution and delegates to the **Memory Service** and **Tool Registry**; the **Knowledge Service** handles retrieval against a **pgvector**-backed vector store. The Model Router dispatches requests to the configured **AI Provider**, **Ollama** for local execution today, with **OpenRouter** planned for multi-provider access.
