@@ -159,7 +159,7 @@ Narek's architecture is cloud-agnostic by design, so the local Docker Compose st
 | **Secrets & access** | Secrets Manager (DB credentials, OpenRouter API key), IAM (least-privilege ECS task roles) |
 | **Observability** | CloudWatch (logs, metrics, alarms), X-Ray (distributed tracing of agent executions) |
 | **AI provider (OpenRouter)** | No dedicated AWS service, just an outbound HTTPS call from the backend via NAT Gateway, authenticated with an API key stored in Secrets Manager |
-| **CI/CD** | CodePipeline + CodeBuild, or GitHub Actions, deploying container images to ECR → ECS |
+| **CI/CD** | GitHub Actions, building and pushing container images to ECR, then deploying to ECS Fargate |
 
 ---
 
