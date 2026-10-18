@@ -49,4 +49,4 @@ Steps 3–6 are not strictly linear in a multi-step agent: a single run can cons
 
 Locally, every component above runs as a container via Docker Compose, with Ollama as the AI provider. This is deliberate: the architecture is cloud-agnostic, so the same component boundaries hold whether the backend is running on a laptop or on managed AWS infrastructure.
 
-The planned production deployment maps each of these components onto managed AWS services — compute, data stores, networking, and observability. That mapping, along with the operational detail behind it (scaling, backups, encryption, CI/CD), is documented separately in [deployment-aws.md](deployment-aws.md) rather than duplicated here, since it changes independently of the application's component architecture.
+The planned production deployment is documented separately in [deployment-aws.md](deployment-aws.md).
