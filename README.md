@@ -4,7 +4,7 @@
 
 Narek is a platform for running, orchestrating, and governing AI agents. It's built for engineering teams that need agent behavior backed by real infrastructure (a runtime, retrieval and memory layers, tool execution, and policy-based governance) rather than a single conversational assistant.
 
-`Java 21` · `Spring Boot 3` · `Spring AI 1.0` · `Angular 20` · `PostgreSQL + pgvector` · `Redis` · `RabbitMQ` · `Docker`
+`Java 21` · `Spring Boot 4.1.1` · `Spring AI 2.0.1` · `Angular 20` · `PostgreSQL + pgvector` · `Redis` · `RabbitMQ` · `Docker`
 
 ## Screenshots
 
@@ -132,8 +132,8 @@ The Angular dashboard talks to a Spring Boot API, which fans out to three core s
 | Layer | Technology |
 |-|-|
 | **Frontend** | Angular 20, TypeScript, Angular Material, Angular Signals, RxJS |
-| **Backend** | Java 21, Spring Boot 3, Spring Data JPA / Hibernate |
-| **AI** | Spring AI 1.0, Ollama (local execution), OpenRouter *(planned)* |
+| **Backend** | Java 21, Spring Boot 4.1.1, Spring Data JPA / Hibernate |
+| **AI** | Spring AI 2.0.1, Ollama (local execution), OpenRouter *(planned)* |
 | **Data / RAG** | PostgreSQL + pgvector, document ingestion pipeline |
 | **Messaging** | RabbitMQ |
 | **Security** | Spring Security, Enterprise RBAC *(planned)* |
